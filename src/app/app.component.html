@@ -10,13 +10,13 @@
           fxLayout="row" fxLayoutAlign="space-around center">
       
       <mat-form-field fxFlex="20" >
-        <input matInput placeholder="Nickname" >
+        <input matInput placeholder="Nickname" [(ngModel)]="nickName">
       </mat-form-field>      
       <mat-form-field fxFlex="60" >
-        <input matInput placeholder="Message" >
+        <input matInput placeholder="Message" [(ngModel)]="message" (keyup.enter)="enviar()">
       </mat-form-field>      
 
-      <button mat-button color="primary">
+      <button mat-button color="primary" (click)="enviar()">
         <mat-icon>send</mat-icon>
       </button>
     </div>
