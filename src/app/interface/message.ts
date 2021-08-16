@@ -1,4 +1,4 @@
 export interface Message {
-    from: string;
+    nome: string;
     message: string;
 }

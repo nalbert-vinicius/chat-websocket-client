@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Message } from './interface/message';
 import { SocketIoService } from './socket-io.service';
 
@@ -9,23 +10,30 @@ import { SocketIoService } from './socket-io.service';
 })
 export class AppComponent {
   nickName: string;
-  message: string
+  message: string;
+  mensagens: Message[] = [];
+  private sub: Subscription
 
   constructor(
     private socketService: SocketIoService
   ) { }
 
   ngOnInit(){
-    this.socketService.mensagens().subscribe((msg: Message) =>{
+    this.sub = this.socketService.mensagens().subscribe((msg: Message) =>{
       console.log(msg);
+      this.mensagens.push(msg);
     })
   }
 
   enviar(){
     this.socketService.enviarMensagem({
-      from: this.nickName,
+      nome: this.nickName,
       message: this.message
     });
     this.message = '';
+  }
+
+  ngOnDestroy(){
+    this.sub.unsubscribe();
   }
 }
