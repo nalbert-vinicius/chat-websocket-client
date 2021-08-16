@@ -10,7 +10,6 @@ import { Subject } from 'rxjs';
 export class SocketIoService {
 
   private url = 'http://localhost:5000';
-  private t = '';
   private socket = socketIO(this.url);
   private subMessages: Subject<Message> = new Subject<Message>(); // observable
 
