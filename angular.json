@@ -25,9 +25,14 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/tether/dist/css/tether.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/tether/dist/js/tether.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
