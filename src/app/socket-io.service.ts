@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Message } from './interface/message';
 import socketIO from 'socket.io-client';
 import { Subject } from 'rxjs';
+import { createOfflineCompileUrlResolver } from '@angular/compiler';
 
 
 @Injectable({
@@ -24,6 +25,11 @@ export class SocketIoService {
   enviarMensagem(msg: Message){
     this.socket.emit('message', msg);  
   }
+
+  entrarSala(room){
+    console.log(room)
+  }
+
 
   mensagens(){
     return this.subMessages.asObservable();
