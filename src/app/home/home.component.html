@@ -2,28 +2,28 @@
     <div class="row top-m">
         <div class="col">
             <h4 class="form-label">Entrar em uma sessão existente</h4>
-            <form  (ngSubmit)="criarSala()">
+            <form  [formGroup]="formulario"  (ngSubmit)="criarSala()">
                 <div class="mb-3">
                   <label class="form-label">Nome usuário</label>
-                  <input type="text" class="form-control" aria-describedby="entre com um nome" placeholder="ex: ana laura">
+                  <input formControlName="nomeUsuario" type="text" class="form-control" aria-describedby="entre com um nome" placeholder="ex: ana laura">
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Nome da sala</label>
-                  <input type="texy" class="form-control">
+                  <input formControlName="nomeSala" type="texy" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">Criar sala</button>
             </form>
         </div>
         <div class="col">
             <h4 class="form-label">Entrar em uma sessão existente</h4>
-            <form>
+            <form [formGroup]="formulario2" (ngSubmit)="entrarSala()">
                 <div class="mb-3">
-                  <label class="form-label">Nome usuário</label>
+                  <label formControlName="nameUser" class="form-label">Nome usuário</label>
                   <input type="text" class="form-control" aria-describedby="entre com um nome" placeholder="ex: ana laura">
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Código da sala</label>
-                  <input type="texy" class="form-control">
+                  <input formControlName="nameRoom" type="texy" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">Entrar na sala</button>
             </form>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SocketIoService } from '../socket-io.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +10,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private socketIoService: SocketIoService,
+    private formBuilder: FormBuilder,
+    private route: Router,
+  ) { }
+
+  formulario: FormGroup = this.formBuilder.group({
+    nomeUsuario: [''],
+    nomeSala: ['']
+  })
+
+  formulario2: FormGroup = this.formBuilder.group({
+    nameUser: [''],
+    nameRoom: ['']
+  })
 
   ngOnInit(): void {
   }
 
   criarSala(){
-    
+    var a = {
+      nomeUsuario: this.formulario.value.nomeUsuario,
+      nomeSala: this.formulario.value.nomeSala
+    }
+    var t = this.socketIoService.criarSala(a)
+    this.route.navigate([`room`])
   }
 
+  entrarSala(){
+    var a = {
+      nomeUsuario: this.formulario2.value.nameUser,
+      nomeSala: this.formulario2.value.nameRoom
+    }
+    var t = this.socketIoService.entrarSala(a)
+    this.route.navigate([`room`]);
+  }
 }

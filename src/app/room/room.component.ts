@@ -3,6 +3,7 @@ import { Message } from '../interface/message';
 import { SocketIoService } from '../socket-io.service';
 import { MatList, MatListItem } from '@angular/material/list';
 import { Subscription } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-room',
@@ -22,7 +23,8 @@ export class RoomComponent {
 
 
   constructor(
-    private socketService: SocketIoService
+    private socketService: SocketIoService,
+    private routeParam: ActivatedRoute
   ) { }
 
   ngAfterViewInit(){
@@ -32,6 +34,9 @@ export class RoomComponent {
   }
 
   ngOnInit(){
+    this.routeParam.params.subscribe((data: any) =>{
+      console.log(data);
+    })
     this.sub = this.socketService.mensagens().subscribe((msg: Message) =>{
       console.log(msg);
       this.mensagens.push(msg);
@@ -42,7 +47,8 @@ export class RoomComponent {
   enviar(){
     this.socketService.enviarMensagem({
       nome: this.nickName,
-      message: this.message
+      message: this.message,
+      nomeSala: ''
     });
     this.message = '';
   }

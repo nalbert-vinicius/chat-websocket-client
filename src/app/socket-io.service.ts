@@ -21,13 +21,28 @@ export class SocketIoService {
     })
   }
 
+  criarSala(sala){
+    return new Promise((resolve, reject) =>{
+      this.socket.emit('criarSala', sala)
+    })
+  }
+
+  uuidv4() {
+    return 'xxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
   //envio de mensagens para servidor
   enviarMensagem(msg: Message){
     this.socket.emit('message', msg);  
   }
 
   entrarSala(room){
-    console.log(room)
+    return new Promise((resolve, reject) =>{
+      this.socket.emit('entrarSala', room)
+    })
   }
 
 
