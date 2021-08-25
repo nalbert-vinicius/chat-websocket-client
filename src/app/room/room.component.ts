@@ -15,6 +15,7 @@ export class RoomComponent {
   nickName: string;
   message: string;
   mensagens: Message[] = [];
+  idSala: any;
   private sub: Subscription;
   private Lista: Subscription;
 
@@ -35,7 +36,7 @@ export class RoomComponent {
 
   ngOnInit(){
     this.routeParam.params.subscribe((data: any) =>{
-      console.log(data);
+      this.idSala = data;
     })
     this.sub = this.socketService.mensagens().subscribe((msg: Message) =>{
       console.log(msg);
@@ -45,7 +46,7 @@ export class RoomComponent {
 
   
   enviar(){
-    this.socketService.enviarMensagem({
+    this.socketService.enviarMensagem( this.idSala, {
       nome: this.nickName,
       message: this.message,
       nomeSala: ''

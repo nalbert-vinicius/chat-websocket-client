@@ -35,8 +35,10 @@ export class HomeComponent implements OnInit {
       nomeSala: this.formulario.value.nomeSala
     }
     var t = this.socketIoService.criarSala(a)
-    this.route.navigate([`room`])
+    this.route.navigate([`room/${this.formulario.value.nomeSala}`])
   }
+
+
 
   entrarSala(){
     var a = {
@@ -44,6 +46,15 @@ export class HomeComponent implements OnInit {
       nomeSala: this.formulario2.value.nameRoom
     }
     var t = this.socketIoService.entrarSala(a)
-    this.route.navigate([`room`]);
+    this.route.navigate([`room/${this.formulario2.value.nameRoom}`]);
   }
+
+
+    uuid() {
+    return 'xxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
 }
