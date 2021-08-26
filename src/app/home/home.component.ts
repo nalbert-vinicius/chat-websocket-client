@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
       nomeUsuario: this.formulario.value.nomeUsuario,
       nomeSala: this.formulario.value.nomeSala
     }
-    var t = this.socketIoService.criarSala(a)
+    this.socketIoService.criarSala(a)
     this.route.navigate([`room/${this.formulario.value.nomeSala}`])
   }
 
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
       nomeUsuario: this.formulario2.value.nameUser,
       nomeSala: this.formulario2.value.nameRoom
     }
-    var t = this.socketIoService.entrarSala(a)
+    this.socketIoService.entrarSala(a)
     this.route.navigate([`room/${this.formulario2.value.nameRoom}`]);
   }
 
